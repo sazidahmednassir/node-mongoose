@@ -53,11 +53,11 @@ const Student = mongoose.model('Student', studentSchema); // Class
 // C => Create
 async function createStudent() {
     const student = new Student({
-        firstName: "Moinul",
-        lastName: "Islam Haq",
+        firstName: "Moinul Haq",
+        lastName: "Islam ",
         dob: new Date("27 April 1995"),
         passed: true,
-        hobbies: ["Swimming", "Singing"],
+        hobbies: ["Swimming", "Gaming", "Watching Movie"],
         parents: {
             father: "A",
             mother: "B",
@@ -73,7 +73,7 @@ async function createStudent() {
     }
 }
 
-// createStudent();
+createStudent();
 
 // R => Read
 async function readStudents() {
@@ -81,8 +81,26 @@ async function readStudents() {
         .find()
         .limit(10)
         .sort({ firstName: -1, lastName: 1 })
-        .select({ firstName: 1, lastName: 1, hobbies: 1 , parents:1});
+        .select({ firstName: 1, lastName: 1, hobbies: 1 , parents:1, passed:1});
     console.log(studentsData);
 }
 
 readStudents();
+
+//update
+async function updateStudent(id) {
+    const student = await Student.updateOne({ _id: id }, {
+        $set: { passed: false }
+    });
+    console.log(student);
+}
+
+// updateStudent('62f0a4ea69f63c30c5e31cae');
+
+//delete
+async function deleteStudent(id) {
+    const student = await Student.deleteOne({ _id: id });
+    console.log(student);
+}
+
+// deleteStudent('62f0a4ea69f63c30c5e31cae');
