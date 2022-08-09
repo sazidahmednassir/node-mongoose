@@ -16,8 +16,8 @@
   },
   "homepage": "https://github.com/sazidahmednassir/node-mongoose#readme",
   "dependencies": {
+    "dotenv": "^16.0.1",
     "mongoose": "^6.5.1"
   },
-  "devDependencies": {},
   "description": ""
 }
